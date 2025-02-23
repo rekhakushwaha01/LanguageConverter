@@ -33,9 +33,12 @@ body {
     flex-direction: column;
 }
 
+
 textarea {
-    width: 330px;
-    height: 400px;
+    width: 100%; /* Changed to 100% for responsiveness */
+    max-width: 330px; /* Set a max-width */
+    height: auto; /* Changed to auto for responsiveness */
+    min-height: 400px; /* Set a minimum height */
     border: none;
     resize: none;
     outline: none;
@@ -44,6 +47,7 @@ textarea {
     background: #fff;
     border-radius: 8px;
 }
+
 
 /* Bottom Controls */
 .bottom-bar {
