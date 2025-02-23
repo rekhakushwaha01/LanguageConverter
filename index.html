@@ -5,21 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Translator</title>
     <link rel="stylesheet" href="style.css">
- 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
 </head>
 <body>
-
     <div class="translator-container">
         <div class="translator-box">
             <div class="text-box">
                 <textarea id="input-text" placeholder="Enter Text"></textarea>
                 <div class="bottom-bar">
                     <button class="icon-btn" onclick="speakText('input-text')">🔊</button>
+                    <button id="copy-given-btn" class="icon-btn"><i class="fas fa-copy"></i> </button> <!-- Button to copy given text -->
                     <select id="input-language">
-                        <!-- <option value="en">English</option>
-                        <option value="hi">Hindi</option>
-                        <option value="es">Spanish</option>
-                        <option value="fr">French</option> -->
+                        <!-- Language options -->
                     </select>
                 </div>
             </div>
@@ -28,11 +25,9 @@
                 <textarea id="output-text" placeholder="Translate" readonly></textarea>
                 <div class="bottom-bar">
                     <button class="icon-btn" onclick="speakText('output-text')">🔊</button>
+                    <button id="copy-translated-btn" class="icon-btn"><i class="fas fa-copy"></i></button> <!-- Button to copy translated text -->
                     <select id="output-language">
-                        <!-- <option value="hi">Hindi</option>
-                        <option value="en">English</option>
-                        <option value="es">Spanish</option>
-                        <option value="fr">French</option> -->
+                        <!-- Language options -->
                     </select>
                 </div>
             </div>
@@ -40,7 +35,6 @@
 
         <button class="translate-btn">Translate</button>
     </div>
-       <script src="countries.js" defer></script>
-   <script src="script.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
