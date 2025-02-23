@@ -29,13 +29,26 @@ document.addEventListener("DOMContentLoaded", () => {
         let text = fromText.value;
         let translateFrom = fromLang.value;
         let translateTo = toLang.value;
-        let apiURL = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${translateFrom}|${translateTo}`;
 
-        fetch(apiURL)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                toText.value = data.responseData.translatedText || "Translation not available";
+        // Split text into chunks of 500 characters
+        const chunkSize = 500;
+        const chunks = [];
+        for (let i = 0; i < text.length; i += chunkSize) {
+            chunks.push(text.substring(i, i + chunkSize));
+        }
+
+        // Function to translate a single chunk
+        const translateChunk = (chunk) => {
+            let apiURL = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(chunk)}&langpair=${translateFrom}|${translateTo}`;
+            return fetch(apiURL)
+                .then(res => res.json())
+                .then(data => data.responseData.translatedText || "Translation not available");
+        };
+
+        // Translate all chunks and combine results
+        Promise.all(chunks.map(translateChunk))
+            .then(translations => {
+                toText.value = translations.join(' '); // Combine translations
             })
             .catch(error => {
                 console.error("Error fetching translation:", error);
