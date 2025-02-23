@@ -56,3 +56,51 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const translateBtn = document.querySelector('.translate-btn');
+    const fromText = document.querySelector('#input-text');
+    const toText = document.querySelector('#output-text');
+
+    // Example translation function (replace with your actual translation logic)
+    translateBtn.addEventListener("click", () => {
+        const text = fromText.value;
+        // Simulate translation (replace with actual API call)
+        toText.value = text.split('').reverse().join(''); // Just reversing text for demonstration
+    });
+
+    // Copy to Clipboard functionality for given text
+    document.getElementById('copy-given-btn').addEventListener("click", () => {
+        const inputText = fromText.value; // Get the input text
+
+        if (inputText) {
+            navigator.clipboard.writeText(inputText)
+                .then(() => {
+                    alert("Given text copied to clipboard!"); // Notify the user
+                })
+                .catch(err => {
+                    console.error("Failed to copy: ", err);
+                    alert("Failed to copy given text."); // Notify if copying fails
+                });
+        } else {
+            alert("Nothing to copy!"); // Notify if there's no text to copy
+        }
+    });
+
+    // Copy to Clipboard functionality for translated text
+    document.getElementById('copy-translated-btn').addEventListener("click", () => {
+        const translatedText = toText.value; // Get the translated text
+
+        if (translatedText) {
+            navigator.clipboard.writeText(translatedText)
+                .then(() => {
+                    alert("Translated text copied to clipboard!"); // Notify the user
+                })
+                .catch(err => {
+                    console.error("Failed to copy: ", err);
+                    alert("Failed to copy translated text."); // Notify if copying fails
+                });
+        } else {
+            alert("Nothing to copy!"); // Notify if there's no text to copy
+        }
+    });
+});
